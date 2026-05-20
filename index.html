@@ -479,16 +479,28 @@
                 min-height: 100vh;
                 min-height: 100dvh;
                 height: auto;
+                position: relative;
             }
 
             .slide {
-                height: 100dvh;
-                min-height: 100dvh;
+                position: relative;
+                inset: auto;
+                width: 100%;
+                height: auto;
+                min-height: calc(100dvh - 4px);
                 padding: 84px 20px calc(124px + env(safe-area-inset-bottom));
-                overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
+                overflow: visible;
                 justify-content: flex-start;
                 align-items: stretch;
+                opacity: 1;
+                transform: none;
+                filter: none;
+                transition: none;
+                display: none;
+            }
+
+            .slide.active {
+                display: flex;
             }
 
             .hero-box {
@@ -1205,6 +1217,10 @@
             });
 
             slides[index].classList.add('active');
+
+            if (window.matchMedia('(max-width: 900px)').matches) {
+                window.scrollTo(0, 0);
+            }
 
         }
 
